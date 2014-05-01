@@ -1,0 +1,12 @@
+smtp:
+  user_name: '3669bef446b33f25'
+  password: '64e146e8219a61'
+  address: 'mailtrap.io'
+  domain: 'mailtrap.io'
+  port: '2525'
+  authentication: :cram_md5
+  enable_starttls_auto: true
+
+mail:
+  to: yokohamarb@googlegroups.com
+  from: yokohama-ruby-brigate@gmail.com
