@@ -15,5 +15,6 @@ include Clockwork
 every(1.day, 'notify.job', at: '05:00') do
   if event = MiyohideSan::Event.find_by_after_week
     MiyohideSan::Postman.notify(event).deliver
+    MiyohideSan::Yaffle.new(event).tweet
   end
 end
