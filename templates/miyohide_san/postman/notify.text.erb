@@ -1,0 +1,17 @@
+次回、<%= @event.title %> 開催のお知らせです。
+
+【日付】<%= @event.date %>（<%= @event.weekday %>）
+【時間】<%= @event.open_at %>～<%= @event.ends_at %>（<%= @event.open_at %>に会場オープン、<%= @event.starts_at %>から開始）
+【場所】<%= @event.venue_name %>
+
+<% if @event.over? %>
+すでに定員に達しております。
+キャンセル待ちの方もいらっしゃるため、参加が難しくなった場合は
+キャンセル処理を実施願います。
+<% else %>
+参加登録は以下からお願いします。
+<% end %>
+<%= @event.public_url %>
+--
+MiyohideSan
+https://github.com/1syo/miyohide_san
