@@ -1,7 +1,10 @@
-require 'settingslogic'
+require "dotenv"
+Dotenv.load
+
 require "action_mailer"
 require "clockwork"
 require "twitter"
+require 'settingslogic'
 require "miyohide_san/version"
 require "miyohide_san/settings"
 require "miyohide_san/doorkeeper"
