@@ -6,15 +6,13 @@ describe MiyohideSan::Event do
 
     let(:doorkeeper) { build(:doorkeeper_event) }
     named_let(:date) { doorkeeper.starts_at.strftime("%Y年%m月%d日") }
-    named_let(:starts_at) { (doorkeeper.starts_at + Rational(30, 24 * 60)).strftime("%H:%M") }
-    named_let(:open_at) { doorkeeper.starts_at.strftime("%H:%M") }
+    named_let(:starts_at) { doorkeeper.starts_at.strftime("%H:%M") }
     named_let(:ends_at) { doorkeeper.ends_at.strftime("%H:%M") }
     named_let(:over) { (doorkeeper.ticket_limit < doorkeeper.participants) }
 
     it { expect(subject.title).to eq doorkeeper.title }
     it { expect(subject.date).to eq date }
     it { expect(subject.starts_at).to eq starts_at }
-    it { expect(subject.open_at).to eq open_at }
     it { expect(subject.ends_at).to eq ends_at }
     it { expect(subject.over?).to eq over }
   end
