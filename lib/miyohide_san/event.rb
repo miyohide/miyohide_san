@@ -38,10 +38,6 @@ module MiyohideSan
     end
 
     def starts_at
-      (@doorkeeper.starts_at + THIRTY_MINUTES_AFTER).strftime("%H:%M")
-    end
-
-    def open_at
       @doorkeeper.starts_at.strftime("%H:%M")
     end
 
