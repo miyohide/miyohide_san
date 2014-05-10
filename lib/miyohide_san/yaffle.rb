@@ -10,7 +10,7 @@ module MiyohideSan
     end
 
     def message
-      "[テスト] #{@event.date}（#{@event.weekday}）に #{@event.title} を開催しますので、よろしければぜひ。参加登録は以下からお願いします。#yokohamarb\n #{@event.public_url}"
+      "#{@event.date}（#{@event.weekday}）に #{@event.title} を開催しますので、よろしければぜひ。参加登録は以下からお願いします。#yokohamarb\n #{@event.public_url}"
     end
   end
 end
