@@ -9,7 +9,7 @@ smtp:
 
 mail:
   to: yokohamarb@googlegroups.com
-  from: yokohama-ruby-brigate@gmail.com
+  from: yokohama.ruby.brigate@gmail.com
 
 tweet:
   consumer_key:         <%= ENV["CONSUMER_KEY"] %>
