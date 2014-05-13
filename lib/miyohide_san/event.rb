@@ -1,7 +1,5 @@
 module MiyohideSan
   class Event
-    THIRTY_MINUTES_AFTER = Rational(30, 24 * 60)
-
     def initialize(doorkeeper)
       @doorkeeper = doorkeeper
     end
