@@ -3,7 +3,6 @@ PATH
   specs:
     miyohide_san (0.0.1)
       actionmailer
-      clockwork
       dotenv
       settingslogic
       twitter
@@ -33,9 +32,6 @@ GEM
     addressable (2.3.6)
     buftok (0.2.0)
     builder (3.2.2)
-    clockwork (0.7.5)
-      activesupport
-      tzinfo
     coderay (1.1.0)
     coveralls (0.7.0)
       multi_json (~> 1.3)
