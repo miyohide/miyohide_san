@@ -15,7 +15,7 @@ require File.expand_path('../../config/application', __FILE__)
 
 module MiyohideSan
   def notify
-    if event = MiyohideSan::Event.find_by_after_week
+    if event = MiyohideSan::Event.find_by_one_week_later
       MiyohideSan::Postman.notify(event).deliver
       MiyohideSan::Yaffle.new(event).tweet
     end

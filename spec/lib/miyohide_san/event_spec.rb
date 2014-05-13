@@ -17,7 +17,7 @@ describe MiyohideSan::Event do
     it { expect(subject.over?).to eq over }
   end
 
-  describe ".find_by_after_week" do
+  describe ".find_by_one_week_later" do
     let(:attributes) do
       {
         q: "Yokohama.rb Monthly Meetup",
@@ -38,6 +38,6 @@ describe MiyohideSan::Event do
       Timecop.return
     end
 
-    it { MiyohideSan::Event.find_by_after_week }
+    it { MiyohideSan::Event.find_by_one_week_later }
   end
 end

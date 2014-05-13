@@ -4,7 +4,7 @@ module MiyohideSan
       @doorkeeper = doorkeeper
     end
 
-    def self.find_by_after_week
+    def self.find_by_one_week_later
       doorkeeper = Doorkeeper::Event.find(
         {
           q: "Yokohama.rb Monthly Meetup",
