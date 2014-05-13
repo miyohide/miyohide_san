@@ -6,3 +6,8 @@ rvm:
   - 2.1.1
 
 script: 'bundle exec rake'
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/54d1bcd11088e671991e
