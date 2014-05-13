@@ -15,7 +15,7 @@ class Doorkeeper::Event < OpenStruct
 
       case k
       when "starts_at", "ends_at", "updated_at", "published_at"
-          h[k] = DateTime.parse(v).new_offset("+0900").to_time
+          h[k] = DateTime.parse(v).new_offset("+0900")
       when "ticket_limit", "participants", "id"
         h[k] = v.to_i
       else
