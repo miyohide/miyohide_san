@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/1syo/validates_csv_format_of.svg?branch=master)](https://travis-ci.org/1syo/miyohide_san)
+[![Coverage Status](https://coveralls.io/repos/1syo/miyohide_san/badge.png)](https://coveralls.io/r/1syo/miyohide_san)
+[![Gitter chat](https://badges.gitter.im/1syo/miyohide_san.png)](https://gitter.im/1syo/miyohide_san)
+
 # MiyohideSan
 
 MiyohideSan is a bot that announces one-week before a start of yokohamarb by e-mail or Twitter.
