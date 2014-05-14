@@ -19,6 +19,23 @@ module MiyohideSan
       doorkeeper.present? ? new(doorkeeper.first) : nil
     end
 
+    def self.latest
+      doorkeeper = Doorkeeper::Event.find(
+        {
+          q: "Yokohama.rb Monthly Meetup",
+          page: 1,
+          locale: "ja",
+          sort: "starts_at"
+        }
+      )
+
+      new(doorkeeper.first)
+    end
+
+    def id
+      @doorkeeper.id
+    end
+
     def title
       @doorkeeper.title
     end
@@ -49,6 +66,14 @@ module MiyohideSan
 
     def weekday
       ['日','月','火','水','木','金','土'][@doorkeeper.starts_at.strftime("%w").to_i]
+    end
+
+    def new_record?
+      last_event < self
+    end
+
+    def last_event
+      MiyohideSan::LastEvent.new
     end
   end
 end
