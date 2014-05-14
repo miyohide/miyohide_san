@@ -10,6 +10,7 @@ require "miyohide_san/doorkeeper"
 require "miyohide_san/event"
 require "miyohide_san/postman"
 require "miyohide_san/yaffle"
+require "miyohide_san/last_event"
 require File.expand_path('../../config/application', __FILE__)
 
 

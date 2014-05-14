@@ -13,11 +13,13 @@ if ENV["RACK_ENV"] != 'production'
 end
 
 require 'miyohide_san'
-namespace "miyohide_san" do
-  desc 'miyohide_san notify'
-  task :notify do
-    MiyohideSan.notify
-  end
+task :environment do
+  FileUtils.mkdir_p(MiyohideSan::LastEvent::CACHE_DIR)
 end
 
-task :default => :spec
+desc 'miyohide_san notify'
+task notify: :environment do
+  MiyohideSan.notify
+end
+
+task :default => [:environment, :spec]
