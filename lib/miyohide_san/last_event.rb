@@ -18,6 +18,6 @@ class MiyohideSan::LastEvent
 
   private
   def cache
-    @cache ||= ActiveSupport::Cache::FileStore.new(CACHE_DIR)
+    ActiveSupport::Cache::FileStore.new(CACHE_DIR)
   end
 end
