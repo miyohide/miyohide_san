@@ -1,1 +1,1 @@
-console: 
+console: bundle exec rake -vT
