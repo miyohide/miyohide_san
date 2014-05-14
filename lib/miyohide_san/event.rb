@@ -3,35 +3,30 @@ module MiyohideSan
     extend Forwardable
     def_delegators :@doorkeeper, :id, :title, :public_url, :venue_name
 
+    DEFAULT_CONDITIONS = {
+      q: "Yokohama.rb Monthly Meetup",
+      page: 1,
+      locale: "ja",
+      sort: "starts_at"
+    }.freeze
+
     def initialize(doorkeeper)
       @doorkeeper = doorkeeper
     end
 
     def self.find_by_one_week_later
       doorkeeper = Doorkeeper::Event.find(
-        {
-          q: "Yokohama.rb Monthly Meetup",
-          page: 1,
-          locale: "ja",
-          sort: "starts_at",
+        DEFAULT_CONDITIONS.merge({
           since: Date.today + 7,
           until: Date.today + 8
-        }
+        })
       )
 
       doorkeeper.present? ? new(doorkeeper.first) : nil
     end
 
     def self.latest
-      doorkeeper = Doorkeeper::Event.find(
-        {
-          q: "Yokohama.rb Monthly Meetup",
-          page: 1,
-          locale: "ja",
-          sort: "starts_at"
-        }
-      )
-
+      doorkeeper = Doorkeeper::Event.find(DEFAULT_CONDITIONS)
       new(doorkeeper.first)
     end
 
