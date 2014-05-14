@@ -15,15 +15,9 @@ require File.expand_path('../../config/application', __FILE__)
 
 module MiyohideSan
   def notify
-    logger = Logger.new(STDOUT)
-
     if event = MiyohideSan::Event.find_by_one_week_later
       MiyohideSan::Postman.notify(event).deliver
       MiyohideSan::Yaffle.new(event).tweet
-
-      logger.info "Event found. #{event.title}"
-    else
-      logger.info "Event not found."
     end
   end
 
