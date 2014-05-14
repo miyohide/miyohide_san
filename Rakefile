@@ -1,3 +1,7 @@
+File.expand_path('../lib', __FILE__).tap do |lib|
+  $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+end
+
 if ENV["RACK_ENV"] != 'production'
   require 'bundler/gem_tasks'
   require 'rspec/core/rake_task'
@@ -8,7 +12,7 @@ if ENV["RACK_ENV"] != 'production'
   end
 end
 
-require './lib/miyohide_san'
+require 'miyohide_san'
 namespace "miyohide_san" do
   desc 'miyohide_san notify'
   task :notify do
