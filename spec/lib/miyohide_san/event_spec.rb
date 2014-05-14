@@ -54,7 +54,7 @@ describe MiyohideSan::Event do
     it { MiyohideSan::Event.find_by_one_week_later }
   end
 
-  describe ".latest" do
+  describe ".last" do
     let(:attributes) do
       {
         q: "Yokohama.rb Monthly Meetup",
@@ -73,7 +73,7 @@ describe MiyohideSan::Event do
       Timecop.return
     end
 
-    it { MiyohideSan::Event.latest }
+    it { MiyohideSan::Event.last }
   end
 
   describe "#new_record?" do

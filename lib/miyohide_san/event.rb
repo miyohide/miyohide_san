@@ -25,7 +25,7 @@ module MiyohideSan
       doorkeeper.present? ? new(doorkeeper.first) : nil
     end
 
-    def self.latest
+    def self.last
       doorkeeper = Doorkeeper::Event.find(DEFAULT_CONDITIONS)
       new(doorkeeper.first)
     end
