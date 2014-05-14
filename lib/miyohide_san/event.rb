@@ -1,5 +1,8 @@
 module MiyohideSan
   class Event
+    extend Forwardable
+    def_delegators :@doorkeeper, :id, :title, :public_url, :venue_name
+
     def initialize(doorkeeper)
       @doorkeeper = doorkeeper
     end
@@ -30,22 +33,6 @@ module MiyohideSan
       )
 
       new(doorkeeper.first)
-    end
-
-    def id
-      @doorkeeper.id
-    end
-
-    def title
-      @doorkeeper.title
-    end
-
-    def public_url
-      @doorkeeper.public_url
-    end
-
-    def venue_name
-      @doorkeeper.venue_name
     end
 
     def date
