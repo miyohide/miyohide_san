@@ -1,8 +1,9 @@
-module Doorkeeper
-end
-
 require 'uri'
 require 'ostruct'
 require 'net/http'
-require "miyohide_san/doorkeeper/event"
-require "miyohide_san/doorkeeper/group"
+
+module Doorkeeper
+  extend ActiveSupport::Autoload
+  autoload :Event, 'miyohide_san/doorkeeper/event'
+  autoload :Group, 'miyohide_san/doorkeeper/group'
+end

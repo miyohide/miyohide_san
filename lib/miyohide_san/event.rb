@@ -55,7 +55,7 @@ module MiyohideSan
     end
 
     def last_event
-      MiyohideSan::LastEvent.new
+      LastEvent.new
     end
   end
 end
