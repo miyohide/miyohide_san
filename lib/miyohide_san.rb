@@ -7,9 +7,9 @@ require 'settingslogic'
 require "action_mailer"
 require 'active_support/dependencies/autoload'
 
+require "doorkeeper"
 require "miyohide_san/version"
 require "miyohide_san/settings"
-require "miyohide_san/doorkeeper"
 
 require File.expand_path('../../config/application', __FILE__)
 
