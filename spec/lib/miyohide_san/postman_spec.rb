@@ -3,8 +3,8 @@ require 'spec_helper'
 describe MiyohideSan::Postman do
   subject { MiyohideSan::Postman.notify(event) }
   let(:event) { MiyohideSan::Event.new(build(:doorkeeper_event)) }
-  let(:to) { Settings.mail.to }
-  let(:from) { Settings.mail.from }
+  let(:to) { MiyohideSan::Settings.mail.to }
+  let(:from) { MiyohideSan::Settings.mail.from }
 
   it { expect(subject).to deliver_to(to) }
   it { expect(subject).to deliver_from(from) }
