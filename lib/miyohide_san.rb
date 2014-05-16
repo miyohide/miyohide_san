@@ -20,12 +20,20 @@ module MiyohideSan
   autoload :Yaffle
   autoload :LastEvent
 
-  def notify
+  def testament
     if event = Event.find_by_one_week_later
-      Postman.notify(event).deliver
-      Yaffle.new(event).tweet
+      Postman.testament(event).deliver
+      Yaffle::Testament.new(event).tweet
     end
   end
 
-  module_function :notify
+  def newborn
+    event = Event.last
+    if event.new_record?
+      Postman.newborn(event).deliver
+      Yaffle::Newborn.new(event).tweet
+    end
+  end
+
+  module_function :testament, :newborn
 end
