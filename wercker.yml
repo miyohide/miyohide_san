@@ -1,0 +1,26 @@
+box: wercker/rvm
+build:
+    steps:
+        - rvm-use:
+              version: 2.1.2
+        - bundle-install:
+            jobs: 4
+        - script:
+            name: echo ruby information
+            code: |
+                echo "ruby version $(ruby --version) running"
+                echo "from location $(which ruby)"
+                echo -p "gem list: $(gem list)"
+        - script:
+               name: rspec
+               code: bundle exec rake
+    after-steps:
+        - 1syo/gitter-notify@0.0.1:
+            token: $GITTER_TOKEN
+deploy:
+    steps:
+        - heroku-deploy:
+            key-name: HEROKU
+    after-steps:
+        - 1syo/gitter-notify@0.0.1:
+            token: $GITTER_TOKEN

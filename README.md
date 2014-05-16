@@ -1,6 +1,5 @@
-[![Build Status](https://travis-ci.org/1syo/validates_csv_format_of.svg?branch=master)](https://travis-ci.org/1syo/miyohide_san)
+[![wercker status](https://app.wercker.com/status/f56e2c05777212afdfa5877a7874b9a2/s "wercker status")](https://app.wercker.com/project/bykey/f56e2c05777212afdfa5877a7874b9a2)
 [![Coverage Status](https://coveralls.io/repos/1syo/miyohide_san/badge.png)](https://coveralls.io/r/1syo/miyohide_san)
-[![Gitter chat](https://badges.gitter.im/1syo/miyohide_san.png)](https://gitter.im/1syo/miyohide_san)
 
 # MiyohideSan
 
