@@ -17,7 +17,7 @@ And then execute:
 
 ## Usage
 
-    $ rake miyohide_san:notify
+    $ rake newborn
 
 ## Contributing
 
