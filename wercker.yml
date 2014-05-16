@@ -18,6 +18,9 @@ build:
         - 1syo/gitter-notify@0.0.1:
             token: $GITTER_TOKEN
 deploy:
+    steps:
+        - heroku-deploy:
+            key-name: HEROKU
     after-steps:
         - 1syo/gitter-notify@0.0.1:
             token: $GITTER_TOKEN
