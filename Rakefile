@@ -17,9 +17,14 @@ task :environment do
   FileUtils.mkdir_p(MiyohideSan::LastEvent::CACHE_DIR)
 end
 
-desc 'miyohide_san notify'
-task notify: :environment do
-  MiyohideSan.notify
+desc 'イベント開始一週間前に通知する'
+task testament: :environment do
+  MiyohideSan.testament
+end
+
+desc 'イベント募集開始時に通知する'
+task newborn: :environment do
+  MiyohideSan.newborn
 end
 
 task :default => [:environment, :spec]
