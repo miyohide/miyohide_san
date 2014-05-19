@@ -27,4 +27,9 @@ task newborn: :environment do
   MiyohideSan.newborn
 end
 
+desc 'Gmailにログインする'
+task :login do
+  MiyohideSan.login
+end
+
 task :default => [:environment, :spec]
