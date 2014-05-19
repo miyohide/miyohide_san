@@ -22,7 +22,7 @@ module MiyohideSan
 
   def testament
     if event = Event.find_by_one_week_later
-      Postman.testament(event).deliver
+      #Postman.testament(event).deliver
       Yaffle::Testament.new(event).tweet
     end
   end
@@ -30,7 +30,7 @@ module MiyohideSan
   def newborn
     event = Event.last
     if event.new_record?
-      Postman.newborn(event).deliver
+      #Postman.newborn(event).deliver
       Yaffle::Newborn.new(event).tweet
     end
   end
