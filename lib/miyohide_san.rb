@@ -19,12 +19,19 @@ module MiyohideSan
   autoload :Postman
   autoload :Yaffle
   autoload :LastEvent
+  autoload :Gmail
+
+  def logger
+    @logger ||= Logger.new(STDOUT)
+  end
 
   def testament
     if event = Event.find_by_one_week_later
       #Postman.testament(event).deliver
       Yaffle::Testament.new(event).tweet
     end
+
+    MiyohideSan.logger.info "testament: #{event}"
   end
 
   def newborn
@@ -33,7 +40,13 @@ module MiyohideSan
       #Postman.newborn(event).deliver
       Yaffle::Newborn.new(event).tweet
     end
+
+    MiyohideSan.logger.info "newborn: #{event}"
   end
 
-  module_function :testament, :newborn
+  def login
+    Gmail.login
+  end
+
+  module_function :testament, :newborn, :login, :logger
 end
