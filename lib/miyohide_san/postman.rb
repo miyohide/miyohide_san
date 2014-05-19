@@ -11,5 +11,9 @@ module MiyohideSan
       @event = event
       mail to: Settings.mail.to, subject: "#{@event.title} 募集開始のお知らせ"
     end
+
+    def test
+      mail to: 'takahashi@1syo.net', subject: "Test mail", body: "Test mail"
+    end
   end
 end

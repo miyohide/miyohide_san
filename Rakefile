@@ -32,4 +32,8 @@ task :login do
   MiyohideSan.login
 end
 
+task :test do
+  MiyohideSan.test
+end
+
 task :default => [:environment, :spec]
