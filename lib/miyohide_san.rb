@@ -27,26 +27,30 @@ module MiyohideSan
 
   def testament
     if event = Event.find_by_one_week_later
-      #Postman.testament(event).deliver
+      Postman.testament(event).deliver
       Yaffle::Testament.new(event).tweet
     end
 
-    MiyohideSan.logger.info "testament: #{event}"
+    logger.info "testament: #{event}"
   end
 
   def newborn
     event = Event.last
     if event.new_record?
-      #Postman.newborn(event).deliver
+      Postman.newborn(event).deliver
       Yaffle::Newborn.new(event).tweet
     end
 
-    MiyohideSan.logger.info "newborn: #{event}"
+    logger.info "newborn: #{event}"
   end
 
   def login
     Gmail.login
   end
 
-  module_function :testament, :newborn, :login, :logger
+  def test
+    Postman.test.deliver
+  end
+
+  module_function :testament, :newborn, :login, :test
 end
