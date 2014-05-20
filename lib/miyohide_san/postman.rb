@@ -13,7 +13,7 @@ module MiyohideSan
     end
 
     def test
-      mail to: 'takahashi@1syo.net', subject: "Test mail", body: "Test mail"
+      mail to: Settings.mail.to, subject: "Test mail", body: "Test mail"
     end
   end
 end
