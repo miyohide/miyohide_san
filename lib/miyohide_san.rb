@@ -31,7 +31,7 @@ module MiyohideSan
       Yaffle::Testament.new(event).tweet
     end
 
-    logger.info "testament: #{event}"
+    MiyohideSan.logger.info "testament: #{event}"
   end
 
   def newborn
@@ -41,7 +41,7 @@ module MiyohideSan
       Yaffle::Newborn.new(event).tweet
     end
 
-    logger.info "newborn: #{event}"
+    MiyohideSan.logger.info "newborn: #{event}"
   end
 
   def login
