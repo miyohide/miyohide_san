@@ -1,14 +1,30 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :doorkeeper_event, class: 'Doorkeeper::Event' do
+  # factory :doorkeeper_event, class: 'Doorkeeper::Event' do
+  #   id { Forgery::Basic.number }
+  #   title { Forgery::Basic.text }
+  #   starts_at { Time.now.to_datetime }
+  #   ends_at { Time.now.to_datetime }
+  #   ticket_limit { Forgery::Basic.number }
+  #   participants { Forgery::Basic.number }
+  #   public_url { "http://#{Forgery(:internet).domain_name}" }
+  #   venue_name {  Forgery::Basic.text }
+  # end
+
+  factory :miyohide_san_event, class: 'MiyohideSan::Event' do
     id { Forgery::Basic.number }
     title { Forgery::Basic.text }
     starts_at { Time.now.to_datetime }
     ends_at { Time.now.to_datetime }
+    venue_name { Forgery::Basic.text }
+    address { Forgery::Basic.text }
     ticket_limit { Forgery::Basic.number }
-    participants { Forgery::Basic.number }
+    published_at { Time.now.to_datetime }
+    updated_at { Time.now.to_datetime }
+    description { Forgery::Basic.text }
     public_url { "http://#{Forgery(:internet).domain_name}" }
-    venue_name {  Forgery::Basic.text }
+    participants { Forgery::Basic.number }
+    waitlisted { Forgery::Basic.number }
   end
 end
