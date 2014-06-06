@@ -1,0 +1,11 @@
+<%= @event.title %> 募集開始のお知らせです。
+
+【日付】<%= @event.formatted_starts_at %>（<%= @event.weekday %>）
+【時間】<%= @event.start_time %>～<%= @event.end_time %>
+【場所】<%= @event.venue_name %>
+
+参加登録は以下からお願いします。
+<%= @event.public_url %>
+--
+MiyohideSan
+https://github.com/1syo/miyohide_san

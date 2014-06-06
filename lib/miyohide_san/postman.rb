@@ -1,19 +1,60 @@
 module MiyohideSan
-  class Postman < ActionMailer::Base
-    default from: Settings.mail.from, return_path: Settings.mail.to
+  module Postman
+    class Base
+      include ::MiyohideSan::Zapierable
 
-    def testament(event)
-      @event = event
-      mail to: Settings.mail.to, subject: "#{@event.title} 開催のお知らせ"
+      def initialize(event)
+        @event = event
+      end
+
+      def url
+        Settings.zapier.mail
+      end
+
+      def to
+        MiyohideSan::Settings.mail.to
+      end
+
+      def from
+        MiyohideSan::Settings.mail.from
+      end
+
+      def body
+        ERB.new(view).result(binding)
+      end
+
+      def json
+        {
+          to: to,
+          from: from,
+          subject: subject,
+          body: body
+        }.to_json
+      end
+
+      def view_path
+        Pathname.new(File.expand_path('../views', __FILE__))
+      end
     end
 
-    def newborn(event)
-      @event = event
-      mail to: Settings.mail.to, subject: "#{@event.title} 募集開始のお知らせ"
+    class Announcement < Base
+      def subject
+        "#{@event.title} 募集開始のお知らせ"
+      end
+
+      def view
+        File.read(view_path.join("postman/announcement.text.erb"))
+      end
     end
 
-    def test
-      mail to: Settings.mail.to, subject: "Test mail", body: "Test mail"
+    class PreviousNotice < Base
+      def subject
+        "#{@event.title} 開催のお知らせ"
+      end
+
+      def view
+        File.read(view_path.join("postman/previous_notice.text.erb"))
+      end
     end
   end
 end
