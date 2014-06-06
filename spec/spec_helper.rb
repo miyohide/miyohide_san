@@ -7,14 +7,17 @@ require 'vcr'
 require 'webmock/rspec'
 require 'factory_girl'
 require 'forgery'
-require 'email_spec'
 require 'named_let'
 require 'timecop'
 require 'factories'
+require 'rspec/json_matcher'
+require 'shoulda/matchers'
+
+ENV['RACK_ENV'] ||= "test"
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
-  config.include EmailSpec::Matchers
+  config.include RSpec::JsonMatcher
   config.order = "random"
 end
 
