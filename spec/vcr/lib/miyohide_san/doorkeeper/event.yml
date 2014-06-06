@@ -1,0 +1,139 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.doorkeeper.jp/events?locale=ja&page=1&q=Yokohama.rb%20Monthly%20Meetup&since=2014-05-10%2006:00:00%20UTC&sort=starts_at&until=2014-05-11%2006:00:00%20UTC
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.doorkeeper.jp
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 06 Jun 2014 12:48:02 GMT
+      Etag:
+      - '"c34bcdc2ec9b40d23f2e560a8e461cf7"'
+      Server:
+      - nginx/1.6.0
+      Status:
+      - 200 OK
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 2e042108-83d0-44c1-a43c-8200267eb6ac
+      X-Runtime:
+      - '0.156859'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '3788'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3siZXZlbnQiOnsidGl0bGUiOiJZb2tvaGFtYS5yYiBNb250aGx5IE1lZXR1
+        cCAjNDQiLCJpZCI6OTc4MCwic3RhcnRzX2F0IjoiMjAxNC0wNS0xMFQwODow
+        MDowMC4wMDBaIiwiZW5kc19hdCI6IjIwMTQtMDUtMTBUMTI6MDA6MDAuMDAw
+        WiIsInZlbnVlX25hbWUiOiLmqKrmtZzluILnpZ7lpYjlt53lnLDljLrjgrvj
+        g7Pjgr/jg7wo5ZKM5a6kKSIsImFkZHJlc3MiOiLnpZ7lpYjlt53nnIzmqKrm
+        tZzluILnpZ7lpYjlt53ljLrnpZ7lpYjlt53mnKznlLo4LTEiLCJsYXQiOiIz
+        NS40NzQ3MjM2IiwibG9uZyI6IjEzOS42MzI5MTkzMDAwMDAwMyIsInRpY2tl
+        dF9saW1pdCI6MjUsInB1Ymxpc2hlZF9hdCI6IjIwMTQtMDMtMTJUMDk6Mjg6
+        MzAuOTA0WiIsInVwZGF0ZWRfYXQiOiIyMDE0LTA1LTI3VDA3OjQzOjA5LjI0
+        NVoiLCJkZXNjcmlwdGlvbiI6IjxwPllva29oYW1hLnJi44Gv44CB5qiq5rWc
+        5ZGo6L6644GuUnVieeaKgOihk+iAheOBn+OBoeOBjOmbhuOBvuOBo+OBplJ1
+        YnnjgavplqLjgZnjgovkvZXjgYvjgpLjgZnjgovlnLDln59SdWJ5aXN044Kz
+        44Of44Ol44OL44OG44Kj44Gn44GZ44CCPC9wPlxuXG48aDI+5qaC6KaBPC9o
+        Mj5cblxuPHVsPlxuPGxpPueZuui1t+S6ujogPGEgaHJlZj1cImh0dHBzOi8v
+        dHdpdHRlci5jb20vZGFuNXlhXCIgdGFyZ2V0PVwiX2JsYW5rXCI+QGRhbjV5
+        YTwvYT5cbjwvbGk+XG48bGk+dHdpdHRlcjogPGEgaHJlZj1cImh0dHBzOi8v
+        dHdpdHRlci5jb20veW9rb2hhbWFyYlwiIHRhcmdldD1cIl9ibGFua1wiPmh0
+        dHBzOi8vdHdpdHRlci5jb20veW9rb2hhbWFyYjwvYT5cbjwvbGk+XG48bGk+
+        dG9nZXR0ZXI6IDxhIGhyZWY9XCJodHRwOi8vdG9nZXR0ZXIuY29tL3QveW9r
+        b2hhbWFyYlwiIHRhcmdldD1cIl9ibGFua1wiPmh0dHA6Ly90b2dldHRlci5j
+        b20vdC95b2tvaGFtYXJiPC9hPlxuPC9saT5cbjxsaT5nb29nbGUgZ3JvdXA6
+        IDxhIGhyZWY9XCJodHRwOi8vZ3JvdXBzLmdvb2dsZS5jb20vZ3JvdXAveW9r
+        b2hhbWFyYlwiIHRhcmdldD1cIl9ibGFua1wiPmh0dHA6Ly9ncm91cHMuZ29v
+        Z2xlLmNvbS9ncm91cC95b2tvaGFtYXJiPC9hPlxuPC9saT5cbjxsaT5mYWNl
+        Ym9vayBncm91cDogPGEgaHJlZj1cImh0dHBzOi8vd3d3LmZhY2Vib29rLmNv
+        bS9ncm91cHMvMjU5ODc0MzM3NDAxNjA2L1wiIHRhcmdldD1cIl9ibGFua1wi
+        Pmh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9ncm91cHMvMjU5ODc0MzM3NDAx
+        NjA2LzwvYT5cbjwvbGk+XG48bGk+Y29kZXJ3YWxsOiA8YSBocmVmPVwiaHR0
+        cHM6Ly9jb2RlcndhbGwuY29tL3RlYW0veW9rb2hhbWEtcmJcIiB0YXJnZXQ9
+        XCJfYmxhbmtcIj5odHRwczovL2NvZGVyd2FsbC5jb20vdGVhbS95b2tvaGFt
+        YS1yYjwvYT5cbjwvbGk+XG48bGk+dGFnOiB5b2tvaGFtYXJiICg8YSBocmVm
+        PVwiaHR0cDovL2IuaGF0ZW5hLm5lLmpwL3NlYXJjaC90YWc/cT15b2tvaGFt
+        YXJiJmFtcDt1c2Vycz0xXCIgdGFyZ2V0PVwiX2JsYW5rXCI+QiE8L2E+KTwv
+        bGk+XG48bGk+5aeJ5aa5cmI6IDxhIGhyZWY9XCJodHRwOi8vcXdpay5qcC9t
+        aW5hbWlyYi9cIiB0YXJnZXQ9XCJfYmxhbmtcIj5NaW5hbWkucmI8L2E+XG48
+        L2xpPlxuPC91bD5cblxuPGgyPuOCv+OCpOODoOODhuODvOODluODqzwvaDI+
+        XG5cbjx0YWJsZT5cbjx0aGVhZD5cbjx0cj5cbjx0aD7mmYLplpM8L3RoPlxu
+        PHRoPuWGheWuuTwvdGg+XG48L3RyPlxuPC90aGVhZD5cbjx0Ym9keT5cbjx0
+        cj5cbjx0ZD4xNzowMO+9njwvdGQ+XG48dGQ+6ZaL5aC0PC90ZD5cbjwvdHI+
+        XG48dHI+XG48dGQ+MTc6MzDvvZ4xODowMDwvdGQ+XG48dGQ+6Ieq5bex57S5
+        5LuLPC90ZD5cbjwvdHI+XG48dHI+XG48dGQ+MTg6MDDvvZ4xOTowMDwvdGQ+
+        XG48dGQ+44K744OD44K344On44OzMTwvdGQ+XG48L3RyPlxuPHRyPlxuPHRk
+        PjE5OjAw44CcMTk6MTA8L3RkPlxuPHRkPuOCueOCpOODvOODhOOCv+OCpOOD
+        oDwvdGQ+XG48L3RyPlxuPHRyPlxuPHRkPjE5OjEw44CcMjA6MzA8L3RkPlxu
+        PHRkPuOCu+ODg+OCt+ODp+ODszI8L3RkPlxuPC90cj5cbjx0cj5cbjx0ZD4y
+        MDozMOOAnDIxOjAwPC90ZD5cbjx0ZD7niYfku5jjgZE8L3RkPlxuPC90cj5c
+        bjwvdGJvZHk+XG48L3RhYmxlPlxuXG48dWw+XG48bGk+44K744OD44K344On
+        44Oz44Gv5Y+C5Yqg6ICF44Gu5oyB44Gh5a+E44KK44Gn5rG644G+44KK44G+
+        44GZ44CCPC9saT5cbjxsaT7jganjgaHjgonjgYvjga7jgrvjg4Pjgrfjg6fj
+        g7Pjgac8YSBocmVmPVwiaHR0cDovL3d3dy5hbWF6b24uY28uanAvZ3AvcHJv
+        ZHVjdC80Nzk3MzU5OTg2L3JlZj1hc19saV9xZl9zcF9hc2luX2lsX3RsP2ll
+        PVVURjgmYW1wO2NhbXA9MjQ3JmFtcDtjcmVhdGl2ZT0xMjExJmFtcDtjcmVh
+        dGl2ZUFTSU49NDc5NzM1OTk4NiZhbXA7bGlua0NvZGU9YXMyJmFtcDt0YWc9
+        cG9lMDItMjJcIiB0YXJnZXQ9XCJfYmxhbmtcIj7jgIxSdWJ544Os44K344OU
+        44OW44OD44KvIOesrDPniYggMzAz44Gu5oqA44CNPC9hPuiqreabuOS8muOC
+        kuOChOOCi+OBi+OCguOBl+OCjOOBvuOBm+OCk+OAguWPguWKoOW4jOacm+OB
+        ruaWueOBr+acrOabuOOCkuOBiuaMgeOBoeOBj+OBoOOBleOBhOOAgjwvbGk+
+        XG48L3VsPlxuXG48aDI+5Lya5aC044Gr44Gk44GE44GmPC9oMj5cblxuPHVs
+        PlxuPGxpPuODl+ODreOCuOOCp+OCr+OCv+ODvOOBguOCiuOBvuOBmeOAgjwv
+        bGk+XG48bGk+5Lya5aC05YKZ44GI5LuY44GR44Gu54Sh57eaTEFO44GM44GC
+        44KK44G+44GZ44GM5re344G/5ZCI44Gj44Gm44G+44GZ44CC44GU6Ieq6Lqr
+        44Gn55So5oSP44GZ44KL44Go5bm444Gb44GL44KC44GX44KM44G+44Gb44KT
+        44CCPC9saT5cbjxsaT7pm7vmupDjgr/jg4Pjg5fjgpLmjIHlj4LjgZfjgabj
+        goLjgonjgYjjgovjgajliqnjgYvjgorjgb7jgZnjgII8L2xpPlxuPC91bD5c
+        blxuPGgyPuaHh+imquS8muOBq+OBpOOBhOOBpjwvaDI+XG5cbjx1bD5cbjxs
+        aT4yMTowMOOBi+OCiTIzOjAw6aCD44G+44Gn5Lya5aC06L+R5omA44Gu5Lit
+        6I+v5paZ55CG5bqX44Gr44Gm5oeH6Kaq5Lya44KS6KGM44GE44G+44GZPC9s
+        aT5cbjxsaT7osrvnlKjjga/mr47lm54yMDAw5YaG56iL5bqm44Gn44GZPC9s
+        aT5cbjwvdWw+XG5cbjxoMj7nlLPjgZfovrzjgb/mmYLjga7jgqLjg7PjgrHj
+        g7zjg4jjgavjgaTjgYTjgaY8L2gyPlxuXG48dWw+XG48bGk+5rCP5ZCN44CB
+        44Oh44O844Or44Ki44OJ44Os44K544CB5oeH6Kaq5Lya44KS6Zmk44GN44CB
+        6ZuG6KiI57WQ5p6c44KS56We5aWI5bed5Zyw5Yy644K744Oz44K/44O844Gr
+        5o+Q5Ye644GX44G+44GZ44CC5LqI44KB44GU5LqG5om/44GP44Gg44GV44GE
+        44CCPC9saT5cbjwvdWw+IiwicHVibGljX3VybCI6Imh0dHA6Ly95b2tvaGFt
+        YXJiLmRvb3JrZWVwZXIuanAvZXZlbnRzLzk3ODAiLCJwYXJ0aWNpcGFudHMi
+        OjIwLCJ3YWl0bGlzdGVkIjowLCJncm91cCI6eyJpZCI6MzUxLCJuYW1lIjoi
+        WW9rb2hhbWEucmIiLCJjb3VudHJ5X2NvZGUiOiJKUCIsImxvZ28iOiJodHRw
+        czovL2R6cHA3OXVjaWJwNWEuY2xvdWRmcm9udC5uZXQvZ3JvdXBzX2xvZ29z
+        LzM1MV9ub3JtYWxfMTM3OTA2ODA4OV80MTg5NjJfMjgzMDE4ODMxNzY1MTE4
+        XzIxNDYzNjY4NDhfbi5qcGciLCJkZXNjcmlwdGlvbiI6IjxwPllva29oYW1h
+        LnJi44Gv44CB5qiq5rWc5ZGo6L6644GuUnVieeaKgOihk+iAheOBn+OBoeOB
+        jOmbhuOBvuOBo+OBplJ1YnnjgavplqLjgZnjgovkvZXjgYvjgpLjgZnjgovl
+        nLDln59SdWJ5aXN044Kz44Of44Ol44OL44OG44Kj44Gn44GZ44CCPC9wPlxu
+        IiwicHVibGljX3VybCI6Imh0dHA6Ly95b2tvaGFtYXJiLmRvb3JrZWVwZXIu
+        anAvIn19fV0=
+    http_version: 
+  recorded_at: Sat, 03 May 2014 06:00:00 GMT
+recorded_with: VCR 2.9.1
