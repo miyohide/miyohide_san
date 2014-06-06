@@ -1,4 +1,6 @@
 box: wercker/rvm
+services:
+    - wercker/mongodb
 build:
     steps:
         - rvm-use:

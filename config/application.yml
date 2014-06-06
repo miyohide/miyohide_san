@@ -1,18 +1,7 @@
-smtp:
-  user_name: <%= ENV["SMTP_USER_NAME"] %>
-  password:  <%= ENV["SMTP_PASSWORD"] %>
-  address:   <%= ENV["SMTP_ADDRESS"] %>
-  domain:    <%= ENV["SMTP_DOMAIN"] %>
-  port:      <%= ENV["SMTP_PORT"] %>
-  authentication: PLAIN
-  enable_starttls_auto: true
+zapier:
+    mail:    <%= ENV["ZAPIER_MAIL"] %>
+    twitter: <%= ENV["ZAPIER_TWITTER"] %>
 
 mail:
-  to: yokohamarb@googlegroups.com
-  from: "Yokohama.rb <yokohama.ruby.brigate@gmail.com>"
-
-tweet:
-  consumer_key:         <%= ENV["CONSUMER_KEY"] %>
-  consumer_secret:      <%= ENV["CONSUMER_SECRET"] %>
-  access_token:         <%= ENV["ACCESS_TOKEN"] %>
-  access_token_secret:  <%= ENV["ACCESS_TOKEN_SECRET"] %>
+    to: yokohamarb@googlegroups.com
+    from: "Yokohama.rb <yokohama.ruby.brigate@gmail.com>"

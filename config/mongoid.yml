@@ -1,0 +1,12 @@
+development:
+    sessions:
+        default:
+            hosts:
+                - 127.0.0.1:27017
+            database: miyohide_san_development
+test:
+    sessions:
+        default:
+            hosts:
+                - <%= ENV["WERCKER_MONGODB_HOST"] || "127.0.0.1:27017" %>
+            database: miyohide_san_test

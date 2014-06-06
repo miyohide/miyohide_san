@@ -13,27 +13,15 @@ if ENV["RACK_ENV"] != 'production'
 end
 
 require 'miyohide_san'
-task :environment do
-  FileUtils.mkdir_p(MiyohideSan::LastEvent::CACHE_DIR)
-end
 
 desc 'イベント開始一週間前に通知する'
-task testament: :environment do
-  MiyohideSan.testament
+task :recent do
+  MiyohideSan.recent
 end
+#
+# desc 'イベント募集開始時に通知する'
+# task :last do
+#   MiyohideSan.last
+# end
 
-desc 'イベント募集開始時に通知する'
-task newborn: :environment do
-  MiyohideSan.newborn
-end
-
-desc 'Gmailにログインする'
-task :login do
-  MiyohideSan.login
-end
-
-task :test do
-  MiyohideSan.test
-end
-
-task :default => [:environment, :spec]
+task :default => :spec

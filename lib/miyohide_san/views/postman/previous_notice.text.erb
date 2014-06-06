@@ -1,7 +1,7 @@
 次回、<%= @event.title %> 開催のお知らせです。
 
-【日付】<%= @event.date %>（<%= @event.weekday %>）
-【時間】<%= @event.starts_at %>～<%= @event.ends_at %>
+【日付】<%= @event.formatted_starts_at %>（<%= @event.weekday %>）
+【時間】<%= @event.start_time %>～<%= @event.end_time %>
 【場所】<%= @event.venue_name %>
 
 <% if @event.over? %>

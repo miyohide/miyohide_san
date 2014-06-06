@@ -1,6 +1,4 @@
 #
-# SMTP Setting
+# Mongoid Setting
 #
-ActionMailer::Base.delivery_method = :smtp
-ActionMailer::Base.smtp_settings = MiyohideSan::Settings.smtp.to_h.symbolize_keys!
-ActionMailer::Base.prepend_view_path(File.expand_path('../../templates', __FILE__))
+Mongoid.load!(File.expand_path('../mongoid.yml', __FILE__), (ENV["RACK_ENV"] || :development))

@@ -1,61 +1,48 @@
 module MiyohideSan
   class Event
-    extend Forwardable
-    def_delegators :@doorkeeper, :id, :title, :public_url, :venue_name
+    include Mongoid::Document
 
-    DEFAULT_CONDITIONS = {
-      q: "Yokohama.rb Monthly Meetup",
-      page: 1,
-      locale: "ja",
-      sort: "starts_at"
-    }.freeze
+    field :id, type: Integer
+    field :title, type: String
+    field :starts_at, type: DateTime
+    field :ends_at, type: DateTime
+    field :venue_name, type: String
+    field :address, type: String
+    field :ticket_limit, type: Integer
+    field :published_at, type: DateTime
+    field :updated_at, type: DateTime
+    field :description, type: String
+    field :public_url, type: String
+    field :participants, type: Integer
+    field :waitlisted, type: Integer
 
-    def initialize(doorkeeper)
-      @doorkeeper = doorkeeper
-    end
+    embeds_one :group
 
-    def self.find_by_one_week_later
-      doorkeeper = Doorkeeper::Event.find(
-        DEFAULT_CONDITIONS.merge({
-          since: Date.today + 7,
-          until: Date.today + 8
-        })
-      )
-
-      doorkeeper.present? ? new(doorkeeper.first) : nil
-    end
+    validates :id, presence: true, numericality: { greater_than: 0 }
+    validates :title, presence: true
 
     def self.last
-      doorkeeper = Doorkeeper::Event.find(DEFAULT_CONDITIONS)
-      new(doorkeeper.first)
+      Event.order_by(:starts_at.desc).first
     end
 
-    def date
-      @doorkeeper.starts_at.strftime("%Y年%m月%d日")
+    def formatted_starts_at
+      starts_at.strftime("%Y年%m月%d日")
     end
 
-    def starts_at
-      @doorkeeper.starts_at.strftime("%H:%M")
+    def start_time
+      starts_at.strftime("%H:%M")
     end
 
-    def ends_at
-      @doorkeeper.ends_at.strftime("%H:%M")
+    def end_time
+      ends_at.strftime("%H:%M")
     end
 
     def over?
-      @doorkeeper.ticket_limit < @doorkeeper.participants
+      ticket_limit < participants
     end
 
     def weekday
-      ['日','月','火','水','木','金','土'][@doorkeeper.starts_at.strftime("%w").to_i]
-    end
-
-    def new_record?
-      last_event < self
-    end
-
-    def last_event
-      LastEvent.new
+      ['日','月','火','水','木','金','土'][starts_at.strftime("%w").to_i]
     end
   end
 end
