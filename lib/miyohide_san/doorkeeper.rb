@@ -36,7 +36,7 @@ module MiyohideSan
           path: "/events",
           query: DEFAULT_CONDITION.merge({
             since: 7.days.since.utc,
-            until: 8.days.since.utc
+            until: 9.days.since.utc
           }).to_query
         }
       end
