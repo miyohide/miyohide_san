@@ -44,5 +44,15 @@ module MiyohideSan
     def weekday
       ['日','月','火','水','木','金','土'][starts_at.strftime("%w").to_i]
     end
+
+    def previous_notice
+      Yaffle::PreviousNotice.new(self).tap do |yaffle|
+        yaffle.post
+      end
+
+      Postman::PreviousNotice.new(self).tap do |postman|
+        postman.post
+      end
+    end
   end
 end
