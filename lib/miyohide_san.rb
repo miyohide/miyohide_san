@@ -22,13 +22,7 @@ module MiyohideSan
   def recent
     if doorkeeper = Doorkeeper.recent
       Event.new(doorkeeper).tap do |event|
-        Yaffle::PreviousNotice.new(event).tap do |yaffle|
-          yaffle.post
-        end
-
-        Postman::PreviousNotice.new(event).tap do |postman|
-          postman.post
-        end
+        event.previous_notice
       end
     end
   end
