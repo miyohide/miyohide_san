@@ -1,7 +1,21 @@
-zapier:
-    mail:    <%= ENV["ZAPIER_MAIL"] %>
-    twitter: <%= ENV["ZAPIER_TWITTER"] %>
-
+defaults: &defaults
+  zapier:
+      mail: ""
+      twitter: ""
 mail:
-    to: yokohamarb@googlegroups.com
+    to: miyohide_san-dev@googlegroups.com
     from: "Yokohama.rb <yokohama.ruby.brigate@gmail.com>"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  zapier:
+      mail:    <%= ENV["ZAPIER_MAIL"] %>
+      twitter: <%= ENV["ZAPIER_TWITTER"] %>
+  mail:
+      to: yokohamarb@googlegroups.com
+      from: "Yokohama.rb <yokohama.ruby.brigate@gmail.com>"
