@@ -27,4 +27,7 @@ module MiyohideSan
   module_function :recent
 end
 
-require File.expand_path('../../config/application', __FILE__)
+#
+# Mongoid Setting
+#
+Mongoid.load!(File.expand_path('../../config/mongoid.yml', __FILE__), (ENV["RACK_ENV"] || :development))
