@@ -1,5 +1,5 @@
 [![wercker status](https://app.wercker.com/status/f56e2c05777212afdfa5877a7874b9a2/s "wercker status")](https://app.wercker.com/project/bykey/f56e2c05777212afdfa5877a7874b9a2)
-[![Coverage Status](https://coveralls.io/repos/1syo/miyohide_san/badge.png)](https://coveralls.io/r/1syo/miyohide_san)
+[![Code Climate](https://codeclimate.com/github/1syo/miyohide_san.png)](https://codeclimate.com/github/1syo/miyohide_san)
 
 # MiyohideSan
 

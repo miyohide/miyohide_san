@@ -24,7 +24,7 @@ describe MiyohideSan::Yaffle::Announcement do
 
   describe "#json" do
     subject { announcement.json }
-    it { expect(subject).to be_json_as({"body"  => /#{event.title}/}) }
+    it { is_expected.to be_json_as({"body"  => /#{event.title}/}) }
   end
 end
 
