@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    miyohide_san (0.0.1)
+    miyohide_san (1.9.0)
       activesupport
       bson_ext
       dotenv
