@@ -1,6 +1,5 @@
 require "uri"
 require "date"
-require "pry"
 require "net/http"
 require "mongoid"
 require "settingslogic"
