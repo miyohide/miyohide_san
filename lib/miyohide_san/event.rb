@@ -2,7 +2,6 @@ module MiyohideSan
   class Event
     include Mongoid::Document
 
-    field :id, type: Integer
     field :title, type: String
     field :starts_at, type: DateTime
     field :ends_at, type: DateTime
@@ -18,11 +17,26 @@ module MiyohideSan
 
     embeds_one :group
 
-    validates :id, presence: true, numericality: { greater_than: 0 }
     validates :title, presence: true
 
-    def self.last
-      Event.order_by(:starts_at.desc).first
+    after_create do
+      new_events_notice
+    end
+
+    def self.fetch!
+      Doorkeeper::Event.latest.each do |json|
+        if event = Event.where(public_url: json["event"]["public_url"]).first
+          event.update_attributes!(json["event"])
+        else
+          Event.create!(json["event"])
+        end
+      end
+    end
+
+    def self.recent!
+      Event.where(starts_at: 7.days.since..8.days.since).each do |event|
+        event.recent_events_notice
+      end
     end
 
     def formatted_starts_at
@@ -45,13 +59,15 @@ module MiyohideSan
       ['日','月','火','水','木','金','土'][starts_at.strftime("%w").to_i]
     end
 
-    def previous_notice
-      Yaffle::PreviousNotice.new(self).tap do |yaffle|
-        yaffle.post
+    def new_events_notice
+      [GoogleGroup::NewEvent, Twitter::NewEvent].each do |klass|
+        klass.new(self).post
       end
+    end
 
-      Postman::PreviousNotice.new(self).tap do |postman|
-        postman.post
+    def recent_events_notice
+      [GoogleGroup::RecentEvent, Twitter::RecentEvent].each do |klass|
+        klass.new(self).post
       end
     end
   end

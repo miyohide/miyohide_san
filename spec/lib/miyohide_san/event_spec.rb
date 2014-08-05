@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 shared_context "create_event_with_specific_time" do
+  before do
+    allow_any_instance_of(MiyohideSan::Event).to receive(:new_events_notice)
+  end
+
   let(:datetime) { [2014, 6, 1, 10, 5] }
   let(:event) do
     Timecop.travel(*datetime) { create(:miyohide_san_event) }
@@ -8,9 +12,76 @@ shared_context "create_event_with_specific_time" do
 end
 
 describe MiyohideSan::Event do
-  it { should validate_numericality_of(:id).is_greater_than(0) }
-  it { should validate_presence_of(:id) }
-  it { should validate_presence_of(:title) }
+  describe ".recent!" do
+    before do
+      allow_any_instance_of(MiyohideSan::Event).to receive(:new_events_notice)
+    end
+
+    context "record exists" do
+      let!(:past_event) { create(:miyohide_san_event, {starts_at: Forgery::Date.date(future: false, past: true)}) }
+      let!(:future_events) { create(:miyohide_san_event, {starts_at: 7.days.since + 1.hours}) }
+
+      before do
+        expect_any_instance_of(MiyohideSan::GoogleGroup::RecentEvent).to receive(:post)
+        expect_any_instance_of(MiyohideSan::Twitter::RecentEvent).to receive(:post)
+        # expect_any_instance_of(MiyohideSan::Facebook::RecentEvent).to receive(:post)
+      end
+
+      specify { MiyohideSan::Event.recent! }
+    end
+
+    context "no record" do
+      let!(:past_event) { create(:miyohide_san_event, {starts_at: Forgery::Date.date(future: false, past: true)}) }
+
+      before do
+        expect_any_instance_of(MiyohideSan::GoogleGroup::RecentEvent).not_to receive(:post)
+        expect_any_instance_of(MiyohideSan::Twitter::RecentEvent).not_to receive(:post)
+        # expect_any_instance_of(MiyohideSan::Facebook::RecentEvent).not_to receive(:post)
+      end
+
+      specify { MiyohideSan::Event.recent! }
+    end
+  end
+
+  describe ".fetch!" do
+    let(:json) do
+      {
+        "event" => {
+          "title" => "Yokohama.rb Monthly Meetup",
+          "public_url" => "http://yokohamarb.doorkeeper.jp/events/1111"
+        }
+      }
+    end
+
+    before do
+      allow_any_instance_of(MiyohideSan::Event).to receive(:new_events_notice)
+    end
+
+    context "update" do
+      before do
+        MiyohideSan::Event.create(json["event"])
+        expect(MiyohideSan::Doorkeeper::Event).to receive(:latest) { [json] }
+      end
+
+      it { expect { MiyohideSan::Event.fetch! }.not_to change(MiyohideSan::Event, :count) }
+    end
+
+    context "create" do
+      before do
+        expect(MiyohideSan::Doorkeeper::Event).to receive(:latest) { [json] }
+      end
+
+      it { expect { MiyohideSan::Event.fetch! }.to change(MiyohideSan::Event, :count).by(1) }
+    end
+  end
+
+  describe "#title" do
+    before do
+      allow_any_instance_of(MiyohideSan::Event).to receive(:new_events_notice)
+    end
+
+    it { should validate_presence_of(:title) }
+  end
 
   describe "#formatted_starts_at" do
     include_context "create_event_with_specific_time"
@@ -37,6 +108,10 @@ describe MiyohideSan::Event do
   end
 
   describe "#over?" do
+    before do
+      allow_any_instance_of(MiyohideSan::Event).to receive(:new_events_notice)
+    end
+
     subject { event.over? }
     let(:event) { create(:miyohide_san_event, attributes) }
 
@@ -49,20 +124,5 @@ describe MiyohideSan::Event do
       let(:attributes) {{ticket_limit: 1, participants: 0}}
       it { is_expected.to be false }
     end
-  end
-
-  describe "#previous_notice" do
-    before do
-      expect(yaffle).to receive(:post)
-      expect(postman).to receive(:post)
-      expect(MiyohideSan::Yaffle::PreviousNotice).to receive(:new).with(event) { yaffle }
-      expect(MiyohideSan::Postman::PreviousNotice).to receive(:new).with(event) { postman }
-    end
-
-    let(:event) { build(:miyohide_san_event) }
-    let(:yaffle) { instance_double("Yaffle", post: true) }
-    let(:postman) { instance_double("Postman", post: true) }
-
-    specify { event.previous_notice }
   end
 end

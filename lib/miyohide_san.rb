@@ -1,4 +1,6 @@
 require "uri"
+require "date"
+require "pry"
 require "net/http"
 require "mongoid"
 require "settingslogic"
@@ -12,23 +14,13 @@ module MiyohideSan
   autoload :Zapierable
   autoload :Event
   autoload :Group
-  autoload :Postman
-  autoload :Yaffle
+  autoload :GoogleGroup
+  autoload :Twitter
+  autoload :Facebook
   autoload :Doorkeeper
-
-  def recent
-    if doorkeeper = Doorkeeper.recent
-      Event.new(doorkeeper).tap do |event|
-        event.previous_notice
-      end
-    end
-  end
-
-  module_function :recent
 end
 
 #
 # Mongoid Setting
 #
-Mongoid.load!(File.expand_path('../../config/mongoid.yml', __FILE__), (ENV["RACK_ENV"] || :development))
-MiyohideSan.recent
+Mongoid.load!(File.expand_path('../../config/mongoid.yml', __FILE__), (ENV["RACK_ENV"] || "development"))

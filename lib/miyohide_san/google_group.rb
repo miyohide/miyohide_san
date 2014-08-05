@@ -1,5 +1,5 @@
 module MiyohideSan
-  module Postman
+  module GoogleGroup
     class Base
       include ::MiyohideSan::Zapierable
 
@@ -11,49 +11,35 @@ module MiyohideSan
         Settings.zapier.mail
       end
 
-      def to
-        MiyohideSan::Settings.mail.to
-      end
-
-      def from
-        MiyohideSan::Settings.mail.from
-      end
-
       def body
         ERB.new(view).result(binding)
       end
 
       def json
         {
-          to: to,
-          from: from,
           subject: subject,
           body: body
         }.to_json
       end
 
-      def view_path
-        Pathname.new(File.expand_path('../views', __FILE__))
+      def view
+        File.read(File.expand_path("../views/#{klass.underscore}.text.erb", __FILE__))
+      end
+
+      def klass
+        self.class.to_s.sub(/MiyohideSan::/, "")
       end
     end
 
-    class Announcement < Base
+    class NewEvent < Base
       def subject
         "#{@event.title} 募集開始のお知らせ"
       end
-
-      def view
-        File.read(view_path.join("postman/announcement.text.erb"))
-      end
     end
 
-    class PreviousNotice < Base
+    class RecentEvent < Base
       def subject
         "#{@event.title} 開催のお知らせ"
-      end
-
-      def view
-        File.read(view_path.join("postman/previous_notice.text.erb"))
       end
     end
   end

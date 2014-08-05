@@ -1,11 +1,15 @@
 require 'spec_helper'
 
-describe MiyohideSan::Yaffle::Announcement do
+describe MiyohideSan::Twitter::NewEvent do
+  before do
+    allow_any_instance_of(MiyohideSan::Event).to receive(:new_events_notice)
+  end
+
   let(:event) { create(:miyohide_san_event) }
-  let(:announcement) { MiyohideSan::Yaffle::Announcement.new(event) }
+  let(:message) { MiyohideSan::Twitter::NewEvent.new(event) }
 
   describe "#body" do
-    subject { announcement.body }
+    subject { message.body }
     it { is_expected.to match /#{event.formatted_starts_at}|#{event.weekday}|#{event.title}/ }
   end
 
@@ -18,19 +22,23 @@ describe MiyohideSan::Yaffle::Announcement do
       expect(MiyohideSan::Settings).to receive(:zapier) { zaiper }
     end
 
-    subject { announcement.url }
+    subject { message.url }
     it { is_expected.to eq url }
   end
 
   describe "#json" do
-    subject { announcement.json }
+    subject { message.json }
     it { is_expected.to be_json_as({"body"  => /#{event.title}/}) }
   end
 end
 
-describe MiyohideSan::Yaffle::PreviousNotice do
+describe MiyohideSan::Twitter::RecentEvent do
+  before do
+    allow_any_instance_of(MiyohideSan::Event).to receive(:new_events_notice)
+  end
+
   let(:event) { create(:miyohide_san_event) }
-  let(:notice) { MiyohideSan::Yaffle::PreviousNotice.new(event) }
+  let(:notice) { MiyohideSan::Twitter::RecentEvent.new(event) }
 
   describe "#body" do
     subject { notice.body }
