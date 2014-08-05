@@ -14,14 +14,14 @@ end
 
 require 'miyohide_san'
 
+desc 'イベント募集開始時に通知する'
+task :fetch do
+  MiyohideSan::Event.fetch!
+end
+
 desc 'イベント開始一週間前に通知する'
 task :recent do
-  MiyohideSan.recent
+  MiyohideSan::Event.recent!
 end
-#
-# desc 'イベント募集開始時に通知する'
-# task :last do
-#   MiyohideSan.last
-# end
 
 task :default => :spec
