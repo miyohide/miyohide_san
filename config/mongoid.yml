@@ -10,3 +10,7 @@ test:
             hosts:
                 - <%= ENV["WERCKER_MONGODB_HOST"] || "127.0.0.1:27017" %>
             database: miyohide_san_test
+production:
+   sessions:
+      default:
+          uri: <%= ENV['MONGOHQ_URL'] %>
