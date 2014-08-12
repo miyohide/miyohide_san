@@ -1,5 +1,5 @@
 module MiyohideSan
-  module Facebook
+  module FacebookGroup
     class Base
       include ::MiyohideSan::Zapierable
 
@@ -8,7 +8,7 @@ module MiyohideSan
       end
 
       def url
-        Settings.zapier.facebook
+        Settings.zapier.facebook_group
       end
 
       def body
