@@ -15,7 +15,7 @@ module MiyohideSan
   autoload :Group
   autoload :GoogleGroup
   autoload :Twitter
-  autoload :Facebook
+  autoload :FacebookGroup
   autoload :Doorkeeper
 end
 

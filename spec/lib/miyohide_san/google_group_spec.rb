@@ -18,7 +18,7 @@ describe MiyohideSan::GoogleGroup::NewEvent do
     let(:zaiper) { double("zaiper") }
 
     before do
-      expect(zaiper).to receive(:mail) { url }
+      expect(zaiper).to receive(:google_group) { url }
       expect(MiyohideSan::Settings).to receive(:zapier) { zaiper }
     end
 

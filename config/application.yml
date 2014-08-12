@@ -1,8 +1,8 @@
 defaults: &defaults
   zapier:
-    mail: ""
+    google_group: ""
     twitter: ""
-    facebook: ""
+    facebook_group: ""
 
 development:
   <<: *defaults
@@ -12,6 +12,6 @@ test:
 
 production:
   zapier:
-    mail: <%= ENV["ZAPIER_MAIL"] %>
+    google_group: <%= ENV["ZAPIER_GOOGLE_GROUP"] %>
     twitter: <%= ENV["ZAPIER_TWITTER"] %>
-    facebook: <%= ENV["ZAPIER_FACEBOOK"] %>
+    facebook_group: <%= ENV["ZAPIER_FACEBOOK_GROUP"] %>
