@@ -60,12 +60,14 @@ module MiyohideSan
     end
 
     def new_events_notice
+      return if ENV["DO_NOT_POST"]
       [GoogleGroup::NewEvent, Twitter::NewEvent, FacebookGroup::NewEvent].each do |klass|
         klass.new(self).post
       end
     end
 
     def recent_events_notice
+      return if ENV["DO_NOT_POST"]
       [GoogleGroup::RecentEvent, Twitter::RecentEvent, FacebookGroup::RecentEvent].each do |klass|
         klass.new(self).post
       end
