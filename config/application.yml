@@ -1,4 +1,6 @@
 defaults: &defaults
+  twitter:
+    hashtag: '#yokohamarb'
   doorkeeper:
     subdomain: yokohamarb
   zapier:
@@ -13,6 +15,8 @@ test:
   <<: *defaults
 
 production:
+  twitter:
+    hashtag: <%= ENV["TWITTER_HASHTAG"] %>
   doorkeeper:
     subdomain: <%= ENV["DOORKEEPER_SUBDOMAIN"] %>
   zapier:

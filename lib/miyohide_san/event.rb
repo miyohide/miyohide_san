@@ -19,16 +19,14 @@ module MiyohideSan
 
     validates :title, presence: true
 
-    after_create do
-      new_events_notice
-    end
-
-    def self.fetch!
+    def self.fetch!(callback = true)
       Doorkeeper::Event.latest.each do |json|
         if event = Event.where(public_url: json["event"]["public_url"]).first
           event.update_attributes!(json["event"])
         else
-          Event.create!(json["event"])
+          Event.create!(json["event"]) do |event|
+            event.new_events_notice if callback
+          end
         end
       end
     end

@@ -1,6 +1,7 @@
 require "uri"
 require "date"
 require "net/http"
+require "ostruct"
 require "mongoid"
 require "settingslogic"
 require 'active_support/all'
@@ -17,6 +18,7 @@ module MiyohideSan
   autoload :Twitter
   autoload :FacebookGroup
   autoload :Doorkeeper
+  autoload :DummyEvent
 end
 
 #

@@ -13,15 +13,41 @@ if ENV["RACK_ENV"] != 'production'
 end
 
 require 'miyohide_san'
+include MiyohideSan
 
 desc 'イベント募集開始時に通知する'
 task :fetch do
-  MiyohideSan::Event.fetch!
+  Event.fetch!
 end
 
 desc 'イベント開始一週間前に通知する'
 task :recent do
-  MiyohideSan::Event.recent!
+  Event.recent!
+end
+
+desc 'doorkeeperからイベント一覧を取得する'
+task :sync do
+  Event.fetch!(false)
+end
+
+namespace :zapier do
+  desc 'Twitter向けの送信テストを行う'
+  task :twitter do
+    twitter = Twitter::NewEvent.new(DummyEvent.new)
+    twitter.post
+  end
+
+  desc 'FacebookGroup向けの送信テストを行う'
+  task :facebook_group do
+    facebook_group = FacebookGroup::NewEvent.new(DummyEvent.new)
+    facebook_group.post
+  end
+
+  desc 'GooleGroup向けの送信テストを行う'
+  task :google_group do
+    google_group = GoogleGroup::NewEvent.new(DummyEvent.new)
+    google_group.post
+  end
 end
 
 task :default => :spec
