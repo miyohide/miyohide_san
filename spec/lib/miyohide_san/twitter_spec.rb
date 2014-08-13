@@ -14,16 +14,8 @@ describe MiyohideSan::Twitter::NewEvent do
   end
 
   describe "#url" do
-    let(:url) { "http://twitter.com/" }
-    let(:zaiper) { double("zaiper") }
-
-    before do
-      expect(zaiper).to receive(:twitter) { url }
-      expect(MiyohideSan::Settings).to receive(:zapier) { zaiper }
-    end
-
     subject { message.url }
-    it { is_expected.to eq url }
+    it { is_expected.to eq "http://localhost:3000/twitter" }
   end
 
   describe "#json" do

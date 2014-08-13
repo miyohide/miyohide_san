@@ -14,16 +14,8 @@ describe MiyohideSan::GoogleGroup::NewEvent do
   end
 
   describe "#url" do
-    let(:url) { "http://www.google.com/" }
-    let(:zaiper) { double("zaiper") }
-
-    before do
-      expect(zaiper).to receive(:google_group) { url }
-      expect(MiyohideSan::Settings).to receive(:zapier) { zaiper }
-    end
-
     subject { message.url }
-    it { is_expected.to eq url }
+    it { is_expected.to eq "http://localhost:3000/google_group" }
   end
 
   describe "#json" do

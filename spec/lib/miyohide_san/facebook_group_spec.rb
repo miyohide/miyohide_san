@@ -14,16 +14,8 @@ describe MiyohideSan::FacebookGroup::NewEvent do
   end
 
   describe "#url" do
-    let(:url) { "http://www.facebook.com/" }
-    let(:zaiper) { double("zaiper") }
-
-    before do
-      expect(zaiper).to receive(:facebook_group) { url }
-      expect(MiyohideSan::Settings).to receive(:zapier) { zaiper }
-    end
-
     subject { message.url }
-    it { is_expected.to eq url }
+    it { is_expected.to eq "http://localhost:3000/facebook_group" }
   end
 
   describe "#json" do
