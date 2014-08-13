@@ -60,13 +60,13 @@ module MiyohideSan
     end
 
     def new_events_notice
-      [GoogleGroup::NewEvent, Twitter::NewEvent].each do |klass|
+      [GoogleGroup::NewEvent, Twitter::NewEvent, FacebookGroup::NewEvent].each do |klass|
         klass.new(self).post
       end
     end
 
     def recent_events_notice
-      [GoogleGroup::RecentEvent, Twitter::RecentEvent].each do |klass|
+      [GoogleGroup::RecentEvent, Twitter::RecentEvent, FacebookGroup::RecentEvent].each do |klass|
         klass.new(self).post
       end
     end

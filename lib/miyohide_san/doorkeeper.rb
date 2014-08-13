@@ -3,7 +3,7 @@ module MiyohideSan
     class Event
       PARAMS = {
         host: "api.doorkeeper.jp",
-        path: "/groups/yokohamarb/events",
+        path: "/groups/#{Settings.doorkeeper.subdomain}/events",
       }.freeze
 
       def url

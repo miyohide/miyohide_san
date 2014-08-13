@@ -24,7 +24,7 @@ describe MiyohideSan::Event do
       before do
         expect_any_instance_of(MiyohideSan::GoogleGroup::RecentEvent).to receive(:post)
         expect_any_instance_of(MiyohideSan::Twitter::RecentEvent).to receive(:post)
-        # expect_any_instance_of(MiyohideSan::Facebook::RecentEvent).to receive(:post)
+        expect_any_instance_of(MiyohideSan::FacebookGroup::RecentEvent).to receive(:post)
       end
 
       specify { MiyohideSan::Event.recent! }
@@ -36,7 +36,7 @@ describe MiyohideSan::Event do
       before do
         expect_any_instance_of(MiyohideSan::GoogleGroup::RecentEvent).not_to receive(:post)
         expect_any_instance_of(MiyohideSan::Twitter::RecentEvent).not_to receive(:post)
-        # expect_any_instance_of(MiyohideSan::Facebook::RecentEvent).not_to receive(:post)
+        expect_any_instance_of(MiyohideSan::FacebookGroup::RecentEvent).not_to receive(:post)
       end
 
       specify { MiyohideSan::Event.recent! }

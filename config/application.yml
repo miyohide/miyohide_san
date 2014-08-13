@@ -1,8 +1,10 @@
 defaults: &defaults
+  doorkeeper:
+    subdomain: yokohamarb
   zapier:
-    mail: ""
-    twitter: ""
-    facebook: ""
+    twitter: "http://localhost:3000/twitter"
+    google_group: "http://localhost:3000/google_group"
+    facebook_group: "http://localhost:3000/facebook_group"
 
 development:
   <<: *defaults
@@ -11,7 +13,9 @@ test:
   <<: *defaults
 
 production:
+  doorkeeper:
+    subdomain: <%= ENV["DOORKEEPER_SUBDOMAIN"] %>
   zapier:
-    mail: <%= ENV["ZAPIER_MAIL"] %>
     twitter: <%= ENV["ZAPIER_TWITTER"] %>
-    facebook: <%= ENV["ZAPIER_FACEBOOK"] %>
+    google_group: <%= ENV["ZAPIER_GOOGLE_GROUP"] %>
+    facebook_group: <%= ENV["ZAPIER_FACEBOOK_GROUP"] %>

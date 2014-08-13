@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe MiyohideSan::GoogleGroup::NewEvent do
+describe MiyohideSan::FacebookGroup::NewEvent do
   before do
     allow_any_instance_of(MiyohideSan::Event).to receive(:new_events_notice)
   end
 
   let(:event) { create(:miyohide_san_event) }
-  let(:message) { MiyohideSan::GoogleGroup::NewEvent.new(event) }
+  let(:message) { MiyohideSan::FacebookGroup::NewEvent.new(event) }
 
   describe "#body" do
     subject { message.body }
@@ -15,7 +15,7 @@ describe MiyohideSan::GoogleGroup::NewEvent do
 
   describe "#url" do
     subject { message.url }
-    it { is_expected.to eq "http://localhost:3000/google_group" }
+    it { is_expected.to eq "http://localhost:3000/facebook_group" }
   end
 
   describe "#json" do
@@ -23,29 +23,23 @@ describe MiyohideSan::GoogleGroup::NewEvent do
     it do
       is_expected.to be_json_as(
         {
-          "body"  => /#{event.title}|#{event.formatted_starts_at}|#{event.venue_name}/,
-          "subject"  => /#{event.title}/
+          "body"  => /#{event.title}|#{event.formatted_starts_at}|#{event.venue_name}/
         }
       )
     end
   end
 end
 
-describe MiyohideSan::GoogleGroup::RecentEvent do
+describe MiyohideSan::FacebookGroup::RecentEvent do
   before do
     allow_any_instance_of(MiyohideSan::Event).to receive(:new_events_notice)
   end
 
   let(:event) { create(:miyohide_san_event) }
-  let(:notice) { MiyohideSan::GoogleGroup::RecentEvent.new(event) }
+  let(:notice) { MiyohideSan::FacebookGroup::RecentEvent.new(event) }
 
   describe "#body" do
     subject { notice.body }
     it { is_expected.to match /#{event.formatted_starts_at}|#{event.weekday}|#{event.title}/ }
-  end
-
-  describe "#subject" do
-    subject { notice.subject }
-    it { is_expected.to match /#{event.title}/ }
   end
 end

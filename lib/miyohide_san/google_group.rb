@@ -8,7 +8,7 @@ module MiyohideSan
       end
 
       def url
-        Settings.zapier.mail
+        Settings.zapier.google_group
       end
 
       def body
