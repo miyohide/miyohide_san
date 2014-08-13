@@ -53,14 +53,11 @@ describe MiyohideSan::Event do
       }
     end
 
-    before do
-      allow_any_instance_of(MiyohideSan::Event).to receive(:new_events_notice)
-    end
-
     context "update" do
       before do
         MiyohideSan::Event.create(json["event"])
         expect(MiyohideSan::Doorkeeper::Event).to receive(:latest) { [json] }
+        expect_any_instance_of(MiyohideSan::Event).not_to receive(:new_events_notice)
       end
 
       it { expect { MiyohideSan::Event.fetch! }.not_to change(MiyohideSan::Event, :count) }
@@ -68,11 +65,22 @@ describe MiyohideSan::Event do
 
     context "create" do
       before do
+        expect_any_instance_of(MiyohideSan::Event).to receive(:new_events_notice)
         expect(MiyohideSan::Doorkeeper::Event).to receive(:latest) { [json] }
       end
 
       it { expect { MiyohideSan::Event.fetch! }.to change(MiyohideSan::Event, :count).by(1) }
     end
+
+    context "create with false option" do
+      before do
+        expect(MiyohideSan::Doorkeeper::Event).to receive(:latest) { [json] }
+        expect_any_instance_of(MiyohideSan::Event).not_to receive(:new_events_notice)
+      end
+
+      it { expect { MiyohideSan::Event.fetch!(false) }.to change(MiyohideSan::Event, :count).by(1) }
+    end
+
   end
 
   describe "#title" do

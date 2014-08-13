@@ -19,16 +19,14 @@ module MiyohideSan
 
     validates :title, presence: true
 
-    after_create do
-      new_events_notice
-    end
-
-    def self.fetch!
+    def self.fetch!(callback = true)
       Doorkeeper::Event.latest.each do |json|
         if event = Event.where(public_url: json["event"]["public_url"]).first
           event.update_attributes!(json["event"])
         else
-          Event.create!(json["event"])
+          Event.create!(json["event"]) do |event|
+            event.new_events_notice if callback
+          end
         end
       end
     end
@@ -60,14 +58,12 @@ module MiyohideSan
     end
 
     def new_events_notice
-      return if ENV["DO_NOT_POST"]
       [GoogleGroup::NewEvent, Twitter::NewEvent, FacebookGroup::NewEvent].each do |klass|
         klass.new(self).post
       end
     end
 
     def recent_events_notice
-      return if ENV["DO_NOT_POST"]
       [GoogleGroup::RecentEvent, Twitter::RecentEvent, FacebookGroup::RecentEvent].each do |klass|
         klass.new(self).post
       end

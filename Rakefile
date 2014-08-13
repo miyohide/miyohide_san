@@ -26,9 +26,7 @@ end
 
 desc 'doorkeeperからイベント一覧を取得する'
 task :sync do
-  ENV["DO_NOT_POST"] = "1"
-  MiyohideSan::Event.fetch!
-  ENV.delete("DO_NOT_POST")
+  MiyohideSan::Event.fetch!(false)
 end
 
 task :default => :spec
