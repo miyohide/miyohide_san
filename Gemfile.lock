@@ -55,6 +55,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rake (10.3.2)
+    rake_shared_context (0.2.1)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)
@@ -100,6 +101,7 @@ DEPENDENCIES
   named_let
   pry
   rake
+  rake_shared_context
   rspec
   rspec-json_matcher
   shoulda-matchers

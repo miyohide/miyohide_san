@@ -80,7 +80,15 @@ describe MiyohideSan::Event do
 
       it { expect { MiyohideSan::Event.fetch!(false) }.to change(MiyohideSan::Event, :count).by(1) }
     end
+  end
 
+  describe ".clean!" do
+    before do
+      create(:miyohide_san_event, {starts_at: (DateTime.now - 1)})
+      create(:miyohide_san_event, {starts_at: (DateTime.now + 1)})
+    end
+
+    it { expect { MiyohideSan::Event.clean! }.to change(MiyohideSan::Event, :count).by(-1) }
   end
 
   describe "#title" do

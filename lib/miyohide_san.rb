@@ -2,6 +2,7 @@ require "uri"
 require "date"
 require "net/http"
 require "ostruct"
+require "rake"
 require "mongoid"
 require "settingslogic"
 require 'active_support/all'
@@ -25,3 +26,8 @@ end
 # Mongoid Setting
 #
 Mongoid.load!(File.expand_path('../../config/mongoid.yml', __FILE__), (ENV["RACK_ENV"] || "development"))
+
+#
+# Rake Setting
+#
+Rake.application.rake_require('miyohide_san', [File.expand_path('../tasks', __FILE__)])

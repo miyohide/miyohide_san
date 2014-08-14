@@ -37,6 +37,10 @@ module MiyohideSan
       end
     end
 
+    def self.clean!
+      Event.where(:starts_at.lt => Time.now).delete_all
+    end
+
     def formatted_starts_at
       starts_at.strftime("%Y年%m月%d日")
     end
