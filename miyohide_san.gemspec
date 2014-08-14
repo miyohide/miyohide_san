@@ -38,4 +38,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec-json_matcher"
   spec.add_development_dependency "shoulda-matchers"
   spec.add_development_dependency "database_cleaner"
+  spec.add_development_dependency "rake_shared_context"
 end

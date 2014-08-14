@@ -15,6 +15,7 @@ require 'factories'
 require 'rspec/json_matcher'
 require 'shoulda/matchers'
 require 'database_cleaner'
+require 'rake_shared_context'
 
 ENV['RACK_ENV'] ||= "test"
 
