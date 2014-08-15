@@ -17,6 +17,8 @@ module MiyohideSan
     field :public_url, type: String
     field :participants, type: Integer
     field :waitlisted, type: Integer
+    field :lat, type: Float
+    field :long, type: Float
     field :sent_at, type: DateTime
 
     embeds_one :group
