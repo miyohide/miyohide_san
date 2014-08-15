@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :miyohide_san_event, class: 'MiyohideSan::Event' do
-    id { Forgery::Basic.number }
+    sequence(:id) { |n| n }
     title { Forgery::Basic.text }
     starts_at { Time.now.to_datetime }
     ends_at { Time.now.to_datetime }
