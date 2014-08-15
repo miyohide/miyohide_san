@@ -12,6 +12,6 @@ if ENV["RACK_ENV"] != 'production'
   end
 end
 
-require 'miyohide_san'
+require 'rake_tasks'
 
 task :default => :spec
