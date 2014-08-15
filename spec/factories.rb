@@ -15,5 +15,6 @@ FactoryGirl.define do
     public_url { "http://#{Forgery(:internet).domain_name}" }
     participants { Forgery::Basic.number }
     waitlisted { Forgery::Basic.number }
+    sent_at nil
   end
 end

@@ -1,6 +1,9 @@
 module MiyohideSan
   class Event
     include Mongoid::Document
+    include ActiveSupport::Callbacks
+    define_callbacks :recent_events_notice
+    set_callback :recent_events_notice, :after, :update_sent_at
 
     field :title, type: String
     field :starts_at, type: DateTime
@@ -14,6 +17,7 @@ module MiyohideSan
     field :public_url, type: String
     field :participants, type: Integer
     field :waitlisted, type: Integer
+    field :sent_at, type: DateTime
 
     embeds_one :group
 
@@ -32,7 +36,7 @@ module MiyohideSan
     end
 
     def self.recent!
-      Event.where(starts_at: 7.days.since..8.days.since).each do |event|
+      Event.where(:starts_at => 7.days.since..8.days.since, :sent_at => nil).each do |event|
         event.recent_events_notice
       end
     end
@@ -68,9 +72,16 @@ module MiyohideSan
     end
 
     def recent_events_notice
-      [GoogleGroup::RecentEvent, Twitter::RecentEvent, FacebookGroup::RecentEvent].each do |klass|
-        klass.new(self).post
+      run_callbacks :recent_events_notice do
+        [GoogleGroup::RecentEvent, Twitter::RecentEvent, FacebookGroup::RecentEvent].each do |klass|
+          klass.new(self).post
+        end
       end
+    end
+
+    private
+    def update_sent_at
+      update_attributes({sent_at: Time.now})
     end
   end
 end

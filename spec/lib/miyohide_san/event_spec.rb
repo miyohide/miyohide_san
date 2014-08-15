@@ -5,9 +5,9 @@ shared_context "create_event_with_specific_time" do
     allow_any_instance_of(MiyohideSan::Event).to receive(:new_events_notice)
   end
 
-  let(:datetime) { [2014, 6, 1, 10, 5] }
+  let(:datetime) { Time.local(2014, 6, 1, 10, 5) }
   let(:event) do
-    Timecop.travel(*datetime) { create(:miyohide_san_event) }
+    Timecop.travel(datetime) { create(:miyohide_san_event) }
   end
 end
 
@@ -20,6 +20,7 @@ describe MiyohideSan::Event do
     context "record exists" do
       let!(:past_event) { create(:miyohide_san_event, {starts_at: Forgery::Date.date(future: false, past: true)}) }
       let!(:future_events) { create(:miyohide_san_event, {starts_at: 7.days.since + 1.hours}) }
+      let!(:sent_future_events) { create(:miyohide_san_event, {starts_at: 7.days.since + 2.hours, sent_at: Time.now}) }
 
       before do
         expect_any_instance_of(MiyohideSan::GoogleGroup::RecentEvent).to receive(:post)
@@ -102,19 +103,19 @@ describe MiyohideSan::Event do
   describe "#formatted_starts_at" do
     include_context "create_event_with_specific_time"
     subject { event.formatted_starts_at }
-    it { is_expected.to eq "#{datetime[0]}年#{"%02d"%[datetime[1]]}月#{"%02d"%[datetime[2]]}日" }
+    it { is_expected.to eq "#{datetime.year}年#{"%02d"%datetime.month}月#{"%02d"%datetime.day}日" }
   end
 
   describe "#start_time" do
     include_context "create_event_with_specific_time"
     subject { event.start_time }
-    it { is_expected.to eq "#{"%02d"%[datetime[3]]}:#{"%02d"%[datetime[4]]}" }
+    it { is_expected.to eq "#{"%02d"%datetime.hour}:#{"%02d"%datetime.min}" }
   end
 
   describe "#end_time" do
     include_context "create_event_with_specific_time"
     subject { event.end_time }
-    it { is_expected.to eq "#{"%02d"%[datetime[3]]}:#{"%02d"%[datetime[4]]}" }
+    it { is_expected.to eq "#{"%02d"%datetime.hour}:#{"%02d"%datetime.min}" }
   end
 
   describe "#weekday" do
@@ -140,5 +141,22 @@ describe MiyohideSan::Event do
       let(:attributes) {{ticket_limit: 1, participants: 0}}
       it { is_expected.to be false }
     end
+  end
+
+  describe "#recent_events_notice" do
+    let(:datetime) { Time.local(2014, 6, 1, 10, 5) }
+    let(:event) { create(:miyohide_san_event) }
+
+    before do
+      expect_any_instance_of(MiyohideSan::GoogleGroup::RecentEvent).to receive(:post)
+      expect_any_instance_of(MiyohideSan::Twitter::RecentEvent).to receive(:post)
+      expect_any_instance_of(MiyohideSan::FacebookGroup::RecentEvent).to receive(:post)
+
+      Timecop.travel(datetime) do
+        event.recent_events_notice
+      end
+    end
+
+    it { expect(event.sent_at.strftime("%Y-%m-%d %H:%s")).to eq datetime.strftime("%Y-%m-%d %H:%s") }
   end
 end
