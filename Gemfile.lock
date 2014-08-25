@@ -5,7 +5,7 @@ PATH
       activesupport
       bson_ext
       dotenv
-      mongoid (~> 4.0)
+      mongoid (>= 4.0)
       settingslogic
 
 GEM
@@ -102,7 +102,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.6)
+  bundler
   codeclimate-test-reporter
   database_cleaner
   factory_girl
