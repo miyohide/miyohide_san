@@ -43,7 +43,7 @@ GEM
     i18n (0.6.11)
     json (1.8.1)
     method_source (0.8.2)
-    minitest (5.4.0)
+    minitest (5.4.1)
     mongoid (4.0.0)
       activemodel (~> 4.0)
       moped (~> 2.0.0)
