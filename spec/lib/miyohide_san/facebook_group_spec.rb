@@ -23,6 +23,7 @@ describe MiyohideSan::FacebookGroup::NewEvent do
     it do
       is_expected.to be_json_as(
         {
+          "subject"  => /#{event.title}/,
           "body"  => /#{event.title}|#{event.formatted_starts_at}|#{event.venue_name}/
         }
       )

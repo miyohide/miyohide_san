@@ -17,6 +17,7 @@ module MiyohideSan
 
       def json
         {
+          subject: subject,
           body: body
         }.to_json
       end
@@ -31,9 +32,15 @@ module MiyohideSan
     end
 
     class NewEvent < Base
+      def subject
+        "#{@event.title} 募集開始のお知らせです。"
+      end
     end
 
     class RecentEvent < Base
+      def subject
+        "次回、#{@event.title} 開催のお知らせです。"
+      end
     end
   end
 end
