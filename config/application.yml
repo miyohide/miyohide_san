@@ -16,7 +16,7 @@ test:
 
 production:
   twitter:
-    hashtag: <%= ENV["TWITTER_HASHTAG"] %>
+    hashtag: '<%= ENV["TWITTER_HASHTAG"] %>'
   doorkeeper:
     subdomain: <%= ENV["DOORKEEPER_SUBDOMAIN"] %>
   zapier:
