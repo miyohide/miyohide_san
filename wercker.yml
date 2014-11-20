@@ -17,12 +17,12 @@ build:
                name: rspec
                code: bundle exec rake
     after-steps:
-        - 1syo/gitter-notify@0.0.1:
-            token: $GITTER_TOKEN
+        - 1syo/idobata-notify@0.2.2:
+                token: $IDOBATA_TOKEN
 deploy:
     steps:
         - heroku-deploy:
             key-name: HEROKU
     after-steps:
-        - 1syo/gitter-notify@0.0.1:
-            token: $GITTER_TOKEN
+        - 1syo/idobata-notify@0.2.2:
+                token: $IDOBATA_TOKEN
